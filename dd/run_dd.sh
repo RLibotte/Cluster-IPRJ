@@ -1,2 +1,2 @@
-g++ -std=c++17 -Ofast -fopenmp dd.cpp -o out
+g++ -std=c++11 -Ofast -fopenmp dd.cpp -o out
 ./out

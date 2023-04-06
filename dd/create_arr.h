@@ -16,7 +16,7 @@
 
 	std::vector<int> nodes_R, zone_config, nodes;
 
-	std::vector<double> mi, w, h_R, h;
+	std::vector<double> mi, w, h_R, h, pos_arr;
 
 	std::vector<std::vector<double>> q_R, sigmat_R, sigmat, psi, psi_m, phi, phi_old, sigmat_z, q;
 

@@ -10,12 +10,15 @@
 //                                                            //
 ////////////////////////////////////////////////////////////////
 
+#include <iostream>
 #include <stdio.h>
 #include <math.h>
 #include <tuple>
 #include <omp.h>
 #include <time.h>
 #include <vector>
+#include <string>
+#include <fstream>
 
 #include "./create_arr.h"
 
@@ -24,6 +27,7 @@
 #include "../get_dev.cpp"
 #include "../get_phi.cpp"
 #include "../get_reflexive_bounds.cpp"
+#include "../print_output.cpp"
 
 #include "./create_array.cpp"
 #include "./get_psi_m.cpp"
@@ -40,7 +44,7 @@ void dd(const int N, double error){
     get_GQ(N, mi, w);
     get_model(R, Z, G, L, h_R, q_R, sigmat_R, sigmas0_R, sigmas1_R, sigmat_z, sigmas0_z, sigmas1_z, nodes, zone_config, nxf, lb, rb);
     create_arrays(N, G, nxf, L, lb, rb, psi, psi_m, phi, phi_old, SS);
-    nodes_arr(N, L, R, G, nxf, nodes, sigmat_R, sigmas0_R, sigmas1_R, q_R, h_R, sigmat, q, sigmas0, sigmas1, h, psi_m, SS);
+    nodes_arr(N, L, R, G, nxf, nodes, sigmat_R, sigmas0_R, sigmas1_R, q_R, h_R, sigmat, q, sigmas0, sigmas1, h, psi_m, SS, pos_arr);
 
     /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -106,7 +110,9 @@ void dd(const int N, double error){
         // printf("%.6e \\\\ \n\n", phi[G-1][index]);
         // index = 0;
 
-        // print_output(G, nxf, phi_nxf, pos_arr);
+
+    pos_arr = get_pos_arr(R, nxf, h, nodes);
+    print_output(G, nxf, phi, pos_arr);
     
 }
 
@@ -122,7 +128,7 @@ int main (){
         printf("%d THREADS\n", omp_get_num_threads());
     }
 
-    const int N = 4;
+    const int N = 2096;
     double error = pow(10, -6);
 
     dd(N, error);

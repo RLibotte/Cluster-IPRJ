@@ -17,9 +17,11 @@ void nodes_arr(int N, int L, int R, int G, int nxf, std::vector<int> &nodes,
   std::vector<std::vector<std::vector <double>>> &sigmas1_R, std::vector<std::vector <double>> &q_R, 
   std::vector<double> &h_R,  std::vector<std::vector<double>> &sigmat, std::vector<std::vector<double>> &q, 
   std::vector<std::vector<std::vector<double>>> &sigmas0, std::vector<std::vector<std::vector<double>>> &sigmas1, 
-  std::vector<double> &h, std::vector<std::vector <double>> &psi_m, std::vector<std::vector<std::vector <double>>> &SS){
+  std::vector<double> &h, std::vector<std::vector <double>> &psi_m, std::vector<std::vector<std::vector <double>>> &SS,
+  std::vector<double> &pos_arr){
 
     h.resize(nxf);
+    pos_arr.resize(nxf+1);
 
     sigmat.resize(nxf, std::vector<double> (G));
     q.resize(nxf, std::vector<double> (G));
