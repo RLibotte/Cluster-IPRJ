@@ -67,3 +67,14 @@ vector<double> get_pos_arr(int R, int nxf, vector<double> h, vector<int> nodes){
 
     return pos_arr;
 }
+
+vector<double> get_pos_arr_coarse(int R, vector<double> h){
+
+    vector<double> pos_arr (R+1, 0);
+
+    for(int i = 0 ; i < R ; i++){
+        pos_arr[i+1] = pos_arr[i] + h[i];
+    }
+    
+    return pos_arr;
+}
