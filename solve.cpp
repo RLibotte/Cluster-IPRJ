@@ -10,9 +10,9 @@
 //                                                            //
 ////////////////////////////////////////////////////////////////
 
-vector<vector <double>> inverse(vector<vector <double>> arr, const int NG) {
+std::vector<std::vector <double>> inverse(std::vector<std::vector <double>> arr, const int NG) {
 
-    vector<vector <double>> ans(NG , vector<double> (NG)); 
+    std::vector<std::vector <double>> ans(NG , std::vector<double> (NG)); 
     alglib::real_2d_array A;
     alglib::ae_int_t info;
     alglib::matinvreport rep;
@@ -46,9 +46,9 @@ vector<vector <double>> inverse(vector<vector <double>> arr, const int NG) {
     return ans;
 }
 
-vector<vector <double>> luinverse(vector<vector <double>> arr, const int NG) {
+std::vector<std::vector <double>> luinverse(std::vector<std::vector <double>> arr, const int NG) {
 
-    vector<vector <double>> ans(NG , vector<double> (NG));
+    std::vector<std::vector <double>> ans(NG , std::vector<double> (NG));
     alglib::real_2d_array lua;
     alglib::ae_int_t info, n;
     alglib::matinvreport rep;
@@ -82,11 +82,11 @@ vector<vector <double>> luinverse(vector<vector <double>> arr, const int NG) {
     return ans;
 }
 
-vector<double> mult(vector<vector <double>> mat, vector<double> arr){
+std::vector<double> mult(std::vector<std::vector <double>> mat, std::vector<double> arr){
 
     const int size = mat.size();
 
-    vector<double> ans(size,0);
+    std::vector<double> ans(size,0);
 
     double sum;
 
@@ -103,10 +103,10 @@ vector<double> mult(vector<vector <double>> mat, vector<double> arr){
 
 }
 
-vector<vector<double>> mult_mat(vector<vector <double>> mat_1, vector<vector<double>> mat_2){
+std::vector<std::vector<double>> mult_mat(std::vector<std::vector <double>> mat_1, std::vector<std::vector<double>> mat_2){
 
     const int size = mat_1.size();
-    vector<vector<double>> ans (size, vector<double> (size));
+    std::vector<std::vector<double>> ans (size, std::vector<double> (size));
 
     for(int i = 0 ; i < size ; i++){
         for(int j = 0 ; j < size ; j++){

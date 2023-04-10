@@ -10,25 +10,21 @@
 //                                                            //
 ////////////////////////////////////////////////////////////////
 
-tuple <vector<vector<double>>, vector<vector<double>>, vector<vector<vector<double>>>, 
-       vector<vector<vector<double>>>, vector<vector<vector<double>>>> 
-	get_eig(int R, int Z, int G, int N, vector<vector<double>> sigmat, 
-	vector<vector<vector <double>>> sigmas0, vector<vector<vector <double>>> sigmas1, 
-    vector<double> mi, vector<double> w, vector<int> zone_config){
+void get_eig(int R, int Z, int G, int N, std::vector<std::vector<double>> &sigmat, 
+	 std::vector<std::vector<std::vector <double>>> &sigmas0, std::vector<std::vector<std::vector <double>>> &sigmas1, 
+     std::vector<double> &mi, std::vector<double> &w, std::vector<int> &zone_config, 
+     std::vector<std::vector<double>> &ni, std::vector<std::vector<double>> &ni_i,
+     std::vector<std::vector<std::vector <double>>> &V, std::vector<std::vector<std::vector <double>>> &VI){
 
 	const int NG = N*G;
 	int r_index = 0, c_index = 0;
 
-    vector<double> D (NG);
+    D.resize(NG);
 
-	vector<vector<double>> A (NG, vector<double> (NG));
-	vector<vector<double>> ni (NG, vector<double> (R));
-    vector<vector<double>> ni_i (NG, vector<double> (R)); /////////////////////////
-	vector<vector<double>> V_temp (NG, vector<double> (NG));
+	A.resize(NG, std::vector<double> (NG));
+	V_temp.resize(NG, std::vector<double> (NG));
 
-	vector<vector<vector<double>>> V(R, vector<vector<double>> (NG, vector<double> (NG)));
-    vector<vector<vector<double>>> VI(R, vector<vector<double>> (NG, vector<double> (NG)));
-	vector<vector<vector<double>>> A_p(NG, vector<vector<double>> (NG, vector<double> (R)));
+	A_p.resize(NG, std::vector<std::vector<double>> (NG, std::vector<double> (R)));
 
 	for (int i = 0; i < Z; i++) {
         for (int j = 0; j < G; j++) {
@@ -50,24 +46,21 @@ tuple <vector<vector<double>>, vector<vector<double>>, vector<vector<vector<doub
                 c_index = 0;
             }
         }
-
-        auto [V_temp, VI_temp, D, DI] = eigen(A, NG);
+        
+        eigen(A, NG, D_eig, DI_eig, V_eig, VI_eig);
 
         for(int l = 0 ; l < R ; l++){
             if(zone_config[l] == (i+1)){
                 for(int j = 0 ; j < NG ; j++){
                     for(int k = 0 ; k < NG ; k++){
-                        V[l][j][k] = V_temp[j][k];
-                        VI[l][j][k] = VI_temp[j][k];
+                        V[l][j][k] = V_eig[j][k];
+                        VI[l][j][k] = VI_eig[j][k];
                     }
-                    ni[j][l] = D[j];
-                    ni_i[j][l] = DI[j]; ////////////////
+                    ni[j][l] = D_eig[j];
+                    ni_i[j][l] = DI_eig[j];
                 }   
             }
         }
-         
         r_index = 0;
     }
-
-    return {ni, ni_i, V, VI, A_p}; ///////////////////////
 }

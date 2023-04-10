@@ -10,7 +10,7 @@
 //                                                            //
 ////////////////////////////////////////////////////////////////
 
-vector<vector<double>> reflexive_l(vector<vector<double>> psi, int N, int G){
+std::vector<std::vector<double>> reflexive_l(std::vector<std::vector<double>> psi, int N, int G){
 
     for(int i = 0 ; i < G ; i++){
         for(int j = 0 ; j < N/2 ; j++){
@@ -22,7 +22,7 @@ vector<vector<double>> reflexive_l(vector<vector<double>> psi, int N, int G){
 
 }
 
-vector<vector<double>> reflexive_r(vector<vector<double>> psi, int N, int G, int nxf){
+std::vector<std::vector<double>> reflexive_r(std::vector<std::vector<double>> psi, int N, int G, int nxf){
 
     for(int i = 0 ; i < G ; i++){
         for(int j = 0 ; j < N/2 ; j++){
