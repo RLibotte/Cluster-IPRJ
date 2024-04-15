@@ -1,5 +1,5 @@
 /*************************************************************************
-ALGLIB 3.18.0 (source code generated 2021-10-25)
+ALGLIB 3.16.0 (source code generated 2019-12-19)
 Copyright (c) Sergey Bochkanov (ALGLIB project).
 
 >>> SOURCE LICENSE >>>
@@ -561,7 +561,6 @@ namespace alglib_impl
 #if defined(AE_COMPILE_ODESOLVER) || !defined(AE_PARTIAL_BUILD)
 static double odesolver_odesolvermaxgrow = 3.0;
 static double odesolver_odesolvermaxshrink = 10.0;
-static double odesolver_odesolverguaranteeddecay = 0.9;
 static void odesolver_odesolverinit(ae_int_t solvertype,
      /* Real    */ ae_vector* y,
      ae_int_t n,
@@ -950,7 +949,7 @@ lbl_10:
     }
     if( ae_fp_greater(err,state->eps) )
     {
-        h = ae_minreal(h2, odesolver_odesolverguaranteeddecay*h, _state);
+        h = h2;
         goto lbl_6;
     }
     
